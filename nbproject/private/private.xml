@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/Model/UserModel.java</file>
-            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/web/index.html</file>
-            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/Utilities/InsertValues.sql</file>
-            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/Servlet/UserController.java</file>
-            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/Utilities/DBConnection.java</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/Controllers/UserController.java</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/DAOs/UserDAO.java</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/LoginFilter.java</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/web/js/contact_me.js</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>
