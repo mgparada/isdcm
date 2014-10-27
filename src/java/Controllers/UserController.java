@@ -10,6 +10,7 @@ import Exceptions.InternalErrorException;
 import Exceptions.UserExistsException;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,17 +44,36 @@ public class UserController extends HttpServlet {
                                 );
         
         try {
-            if( UserDAO.save(registeredUser) ) {
-                request.setAttribute("response", "Tu usuario ha sido creado correctamente.");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+            if( UserDAO.save(registeredUser) && checkLogin(response, registeredUser) ) {
+                response.setStatus(HttpServletResponse.SC_OK);
             } else
-                request.setAttribute("response", "Extraño. Por aquí no debería pasar nunca...");
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         } catch (UserExistsException ex) {
-            request.setAttribute("response", "Ya existe un usuario en el sistema con ese nick.");
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         } catch (InternalErrorException ex) {
-            request.setAttribute("response", "Ha ocurrido un error interno, inténtalo de nuevo");
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    private boolean checkLogin(HttpServletResponse httpResponse, 
+            User registeredUser ) {
+        
+        final String nickname = registeredUser.getName();
+        final String password = registeredUser.getPassword();
+        
+        System.out.println("nick " + nickname );
+        System.out.println("pass " + password );
+        
+        if( nickname != null || password != null ) {
+            final String token = UserDAO.checkLogin(nickname, password);
+            System.out.println("token " + token );
+            if( token != null ) {
+                httpResponse.addCookie(new Cookie("token", token));
+                return true;
+            }
         }
         
-        request.getRequestDispatcher("errors.jsp").forward(request, response);
+        
+        return false;
     }
 }

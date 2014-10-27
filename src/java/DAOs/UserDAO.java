@@ -34,12 +34,20 @@ public final class UserDAO {
             
             final ResultSet result = preparedStatement.executeQuery();
             if( result.next() ) {
-                if( result.getString("PASSWORD").equals(password) )
+                if( result.getString("PASSWORD").equals(password) ) {
+                    System.out.println("ENTRA");
                     return nickname + ":" + password;
+                }
             }
             
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DBConnection.closeConnection();
+            } catch (SQLException ex) {
+                System.err.println( Arrays.toString(ex.getStackTrace()) );
+            }
         }
         
         return null;
@@ -65,6 +73,12 @@ public final class UserDAO {
             
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DBConnection.closeConnection();
+            } catch (SQLException ex) {
+                System.err.println( Arrays.toString(ex.getStackTrace()) );
+            }
         }
         
         return null;

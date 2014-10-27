@@ -54,7 +54,8 @@ public class LoginFilter implements Filter {
     
     private boolean isStaticContent(HttpServletRequest httpRequest) {
         return httpRequest.getServletPath().matches("^/js/.*$") || 
-                httpRequest.getServletPath().matches("^/css/.*$") ;
+                httpRequest.getServletPath().matches("^/css/.*$") ||
+                httpRequest.getServletPath().matches("^/sectionPages/.*$");
     }
     
     private boolean isLogoutPath(HttpServletRequest request) {
@@ -96,7 +97,7 @@ public class LoginFilter implements Filter {
     private boolean checkLogin(HttpServletRequest httpRequest, 
             HttpServletResponse httpResponse) {
         
-        if( !httpRequest.getServletPath().equals("/login") )
+        if( !httpRequest.getServletPath().equals("/login.jsp") )
             return false;
         
         final String nickname = httpRequest.getParameter("nickname");
