@@ -4,8 +4,10 @@
  */
 package Controllers;
 
-import DAOs.UserDAO;
+import DAOs.VideoDAO;
 import Entities.Video;
+import Exceptions.InternalErrorException;
+import Exceptions.VideoExistsException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
@@ -13,7 +15,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -43,30 +44,37 @@ public class VideoController extends HttpServlet {
         Video videoToSave = new Video( 
                                     request.getParameter("title"),
                                     request.getParameter("author"),
-                                    createDateFromString(request.getParameter("creation_date")),
+                                    createDateFromString(request.getParameter("creationDate")),
                                     createTimeFromString(request.getParameter("duration")), 
                                     request.getParameter("description"), 
                                     request.getParameter("format"), 
-                                    new URL(request.getParameter("url"))
+                                    new URL(request.getParameter("url")),
+                                    new URL(request.getParameter("image")),
+                                    request.getParameter("language")
                                 );
-//        
-//        if( new UserDAO().createUser(data) )
-//            request.setAttribute("response", "El video se ha añadido correctamente.");
-//        else
-//            request.setAttribute("response", "Ya existe un video con ese nombre.");
         
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        try {
+            if( VideoDAO.save(videoToSave) ) {
+                response.setStatus(HttpServletResponse.SC_OK);
+            } else
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (VideoExistsException ex) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        } catch (InternalErrorException ex) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
     }
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
             throws ServletException, IOException {
      
+        req.setAttribute("videos", VideoDAO.getAll());
         
-        
+        req.getRequestDispatcher("listVideos.jsp").forward(req, resp);
     }
     
-    private Date createDateFromString ( String date ) {
+    private java.sql.Date createDateFromString ( String date ) {
         Date newDate = null;
         try {
             DateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
@@ -75,7 +83,7 @@ public class VideoController extends HttpServlet {
             Logger.getLogger(VideoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return newDate;
+        return new java.sql.Date( newDate.getTime() );
     }
     
     private Time createTimeFromString ( String time ) {

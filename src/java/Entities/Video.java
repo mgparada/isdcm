@@ -5,7 +5,7 @@
  */
 package Entities;
 
-import java.util.Date;
+import java.sql.Date;
 import java.net.URL;
 import java.sql.Time;
 
@@ -24,11 +24,13 @@ public class Video {
     private long views;
     private String description;
     private String mime;
-    private URL url;
+    private URL videoUrl;
+    private URL imageUrl;
+    private String language;
 
     public Video(int id, String title, String author, Date creationDate, 
             Date uploadDate, Time duration, long views, String description, 
-            String mime, URL url) {
+            String mime, URL videoUrl, URL imageUrl, String language) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -38,26 +40,31 @@ public class Video {
         this.views = views;
         this.description = description;
         this.mime = mime;
-        this.url = url;
+        this.videoUrl = videoUrl;
+        this.imageUrl = imageUrl;
+        this.language = language;
     }
     
     public Video(String title, String author, Date creationDate, Time duration, 
-                String description, String mime, URL url) {
+                String description, String mime, URL videoUrl, URL imageUrl, 
+                String language ) {
         this.title = title;
         this.author = author;
         this.creationDate = creationDate;
         this.duration = duration;
         this.description = description;
         this.mime = mime;
-        this.url = url;
+        this.videoUrl = videoUrl;
+        this.imageUrl = imageUrl;
+        this.language = language;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
@@ -65,7 +72,7 @@ public class Video {
     }
 
     public String getAuthor() {
-        return author;
+        return this.author;
     }
 
     public void setAuthor(String author) {
@@ -73,7 +80,7 @@ public class Video {
     }
 
     public Date getCreationDate() {
-        return creationDate;
+        return this.creationDate;
     }
 
     public void setCreationDate(Date creationDate) {
@@ -81,7 +88,7 @@ public class Video {
     }
 
     public Date getUploadDate() {
-        return uploadDate;
+        return this.uploadDate;
     }
 
     public void setUploadDate(Date uploadDate) {
@@ -89,7 +96,7 @@ public class Video {
     }
 
     public Time getDuration() {        
-        return duration;
+        return this.duration;
     }
 
     public void setDuration(Time duration) {
@@ -97,7 +104,7 @@ public class Video {
     }
 
     public long getViews() {
-        return views;
+        return this.views;
     }
 
     public void setViews(long views) {
@@ -105,7 +112,7 @@ public class Video {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -113,21 +120,36 @@ public class Video {
     }
 
     public String getMime() {
-        return mime;
+        return this.mime;
     }
 
     public void setMime(String mime) {
         this.mime = mime;
     }
 
-    public URL getUrl() {
-        return url;
+    public URL getVideoUrl() {
+        return this.videoUrl;
     }
 
-    public void setUrl(URL url) {
-        this.url = url;
+    public void setVideoUrl(URL url) {
+        this.videoUrl = url;
     }
     
+    public URL getImageUrl() {
+        return this.imageUrl;
+    }
+
+    public void setImageUrl(URL url) {
+        this.imageUrl = url;
+    }
+    
+    public String getLanguage() {
+        return this.language.substring(0,1).toUpperCase() + this.language.substring(1);
+    }
+    
+    public void setLanguage( String language ) {
+        this.language = language;
+    }
     
     
 }

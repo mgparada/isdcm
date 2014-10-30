@@ -14,7 +14,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>videos</servlet-name>
-        <url-pattern>/videos</url-pattern>
+        <url-pattern>/addVideo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>videos</servlet-name>
+        <url-pattern>/getAll</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

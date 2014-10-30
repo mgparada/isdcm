@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/DAOs/VideoDAO.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>85</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/Controllers/UserController.java</file>
-            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/DAOs/UserDAO.java</file>
-            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/web/js/register.js</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/web/sectionPages/headerDash.jsp</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/web/listVideos.jsp</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/Controllers/VideoController.java</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/web/sectionPages/videoRegisterForm.jsp</file>
+            <file>file:/home/mauro/Dropbox/Universidade/Master/ISDCM/practica1/src/java/DAOs/VideoDAO.java</file>
         </group>
     </open-files>
 </project-private>

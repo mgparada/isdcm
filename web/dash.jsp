@@ -25,11 +25,6 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.datetimepicker.js"></script>
 
-        <!-- Plugin JavaScript -->
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="js/classie.js"></script>
-        <script src="js/cbpAnimatedHeader.js"></script>
-
         <!-- Contact Form JavaScript -->
         <script src="js/jqBootstrapValidation.js"></script>
         <script src="js/register.js"></script>
@@ -54,22 +49,17 @@
     <body id="page-top" class="index">
 
         <jsp:include page="sectionPages/nav.jsp" />
+        <jsp:include page="sectionPages/headerDash.jsp" />
         
-        <% if (!isLoged) { %>
-            <jsp:include page="sectionPages/header.jsp" />
-        <% } else { %>
-            <jsp:include page="sectionPages/headerDash.jsp" />
-        <% } %>
-        
-
-        <% if (!isLoged) { %>
-            <jsp:include page="sectionPages/userRegisterForm.jsp" />
-        <% } else { %>
-            <jsp:include page="sectionPages/videoRegisterForm.jsp" />
-        <% } %>
+        <jsp:include page="sectionPages/videoRegisterForm.jsp" />
         
         <jsp:include page="sectionPages/footer.jsp" />
 
+        
+        <!-- Plugin JavaScript -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="js/classie.js"></script>
+        <script src="js/cbpAnimatedHeader.js"></script>
         <script>
             $( '#submitLogin' ).on( 'click', function ( e ) {
                 e.preventDefault();

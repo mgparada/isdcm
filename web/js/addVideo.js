@@ -1,6 +1,6 @@
 $(function() {
 
-    $("#contactForm").find("input, textarea").jqBootstrapValidation({
+    $("#videoRegisterForm").find("input, textarea").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
             // additional error messages or events
@@ -9,15 +9,15 @@ $(function() {
             event.preventDefault(); // prevent default submit behaviour
             
             $.ajax({
-                url: "registerUser",
+                url: "addVideo",
                 type: "POST",
                 data: $form.serialize(),
                 success: function(data) {
-                    window.location.href = "index.jsp";
+                    window.location.href = "getAll";
                 },
-                error: function( jqXHR, textStatus, errorThrown) {
+                error: function( jqXHR ) {
                     if( jqXHR.status === 403 )
-                        $('.error').text("These nickname already exists.");
+                        $('.error').text("These title already exists.");
                     else
                         $('.error').text("An internal error has occurred. Try again.");
                     

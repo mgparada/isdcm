@@ -118,6 +118,9 @@ public class LoginFilter implements Filter {
             HttpServletResponse httpResponse
     ) throws IOException {
         String redirectPath = httpRequest.getRequestURI();
+        if(httpRequest.getServletPath().equals("/login.jsp"))
+            redirectPath = "/practica1/index.jsp";
+        
         if( httpRequest.getQueryString() != null )
             redirectPath += httpRequest.getQueryString();
         

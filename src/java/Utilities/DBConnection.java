@@ -22,6 +22,11 @@ public final class DBConnection {
             con.close();
     }
     
+    public static void closeConnection ( Connection connection ) throws SQLException {
+        if( connection != null )
+            connection.close();
+    }
+    
     public static PreparedStatement getPreparedStatement ( String query ) throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setQueryTimeout(30);

@@ -1,6 +1,6 @@
 $(function() {
 
-    $("input").jqBootstrapValidation({
+    $("#contactForm").find("input, textarea").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
             // additional error messages or events
@@ -15,14 +15,18 @@ $(function() {
                 success: function(data) {
                     window.location.href = "index.jsp";
                 },
-                error: function(data) {
-                    $('.error').text("These nickname already exists.");
+                error: function( jqXHR, textStatus, errorThrown) {
+                    if( jqXHR.status === 403 )
+                        $('.error').text("These nickname already exists.");
+                    else
+                        $('.error').text("An internal error has occurred. Try again.");
+                    
                     $('html,body').animate({
                         scrollTop: $("#register").offset().top},
                         'slow'
                     );
                 }
-            })
+            });
         },
         filter: function() {
             return $(this).is(":visible");
